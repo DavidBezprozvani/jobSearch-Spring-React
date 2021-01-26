@@ -1,8 +1,9 @@
-package com.codeacademy.jobsearch.Entity;
+package com.codeacademy.jobsearch.entity;
 
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
@@ -22,15 +23,17 @@ public class User {
     @Column(unique = true, nullable = false)
     private String username;
 
+    @Email
+    @Column(unique = true, nullable = false)
+    private String email;
+
     @Column(nullable = false)
     @Size(min = 3)
     private String password;
 
-    @NotBlank
     @Column(name = "first_name")
     private String firstName;
 
-    @NotBlank
     @Column(name = "last_name")
     private String lastName;
 

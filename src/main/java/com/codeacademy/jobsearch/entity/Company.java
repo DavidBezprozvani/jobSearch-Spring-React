@@ -1,4 +1,4 @@
-package com.codeacademy.jobsearch.Entity;
+package com.codeacademy.jobsearch.entity;
 
 
 import lombok.*;
@@ -18,6 +18,9 @@ public class Company {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(unique = true, nullable = false)
+    private String email;
+
     @Column(name = "registration_code")
     private Long registrationCode;
 
@@ -26,11 +29,11 @@ public class Company {
 
     private String address;
 
-    @Column(name = "logo_url")
+    @Column(name = "company_logo")
     private String logoUrl;
 
     @OneToMany
-    private List<JobAdvert> jobAdvert;
+    private List<JobAd> jobAd;
 
 
 

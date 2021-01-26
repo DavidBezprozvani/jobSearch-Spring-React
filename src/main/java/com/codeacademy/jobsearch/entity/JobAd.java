@@ -1,10 +1,14 @@
-package com.codeacademy.jobsearch.Entity;
+package com.codeacademy.jobsearch.entity;
 
-import jdk.jfr.Timestamp;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 
 @Getter
@@ -13,27 +17,35 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @ToString
 @Entity
-public class JobAdvert {
+public class JobAd {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotNull
+    @Size(min = 1, max = 7)
     private String title;
 
+    //part-time or full-time
     private String type;
 
     @ManyToOne
-    private Company companyName;
+    private Company company;
 
+    @Lob
+    @Size(min = 1, max = 255)
     private String description;
 
     @CreationTimestamp
-    @Column(name = "created_at")
     private LocalDateTime createdAt;
 
     private String location;
 
-    @Column(name = "url")
     private String applyUrl;
+
+    private String companyUrl;
+
+    private String logoUrl;
+
 }
