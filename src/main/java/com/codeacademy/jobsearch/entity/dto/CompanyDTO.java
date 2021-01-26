@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.validation.constraints.Email;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -12,6 +14,9 @@ import lombok.Setter;
 public class CompanyDTO {
 
     private String companyName;
+
+    @Email
+    private String email;
 
     private String address;
 
