@@ -29,11 +29,11 @@ public class Company {
 
     private String address;
 
-    @Column(name = "company_logo")
+    @Column(name = "logo_url")
     private String logoUrl;
 
     @OneToMany
-    private List<JobAd> jobAd;
+    private List<Post> posts;
 
 
 

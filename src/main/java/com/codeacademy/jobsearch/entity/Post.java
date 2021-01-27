@@ -1,15 +1,13 @@
 package com.codeacademy.jobsearch.entity;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
+
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-import java.time.LocalDateTime;
+import java.time.Instant;
+
 
 @Getter
 @Setter
@@ -17,35 +15,37 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @ToString
 @Entity
-public class JobAd {
+public class Post {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull
-    @Size(min = 1, max = 7)
     private String title;
 
     //part-time or full-time
     private String type;
 
-    @ManyToOne
-    private Company company;
-
     @Lob
-    @Size(min = 1, max = 255)
     private String description;
 
     @CreationTimestamp
-    private LocalDateTime createdAt;
+    @Column(name = "created_at")
+    private Instant createdAt;
 
     private String location;
 
+    @Column(name = "apply_url")
     private String applyUrl;
 
+    @Column(name = "company_url")
     private String companyUrl;
 
+    @Column(name = "logo_url")
     private String logoUrl;
+
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "company_id")
+    private Company company;
 
 }

@@ -1,8 +1,6 @@
 package com.codeacademy.jobsearch.entity.dto;
 
 import com.codeacademy.jobsearch.entity.Company;
-import com.codeacademy.jobsearch.entity.JobAd;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,9 +9,9 @@ import lombok.Setter;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.time.Instant;
 import java.time.LocalDateTime;
 
 
@@ -21,27 +19,29 @@ import java.time.LocalDateTime;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class JobAdDTO {
+public class PostDTO {
 
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull
+    @NotBlank
     @Size(min = 1, max = 255)
     private String title;
 
-
+    @NotBlank
     private String type;
 
-    @ManyToOne
+    @NotBlank
     private Company company;
 
+    @NotBlank
     private String description;
 
-    private LocalDateTime createdAt;
+    private Instant createdAt;
 
+    @NotBlank
     private String location;
 
     private String applyUrl;

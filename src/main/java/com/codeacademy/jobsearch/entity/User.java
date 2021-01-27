@@ -42,13 +42,13 @@ public class User {
     @Column(name = "profile_picture")
     private String profilePictureUrl;
 
-    @ManyToMany
-    @Cascade(org.hibernate.annotations.CascadeType.PERSIST)
-    @JoinTable(
-            name = "User_Roles",
-            joinColumns = {@JoinColumn(name = "user_id")},
-            inverseJoinColumns = {@JoinColumn(name = "role_id")}
-    )
-    private Set<Role> roles;
+//    @ManyToMany
+//    @Cascade(org.hibernate.annotations.CascadeType.PERSIST)
+//    @JoinTable(
+//            name = "User_Roles",
+//            joinColumns = {@JoinColumn(name = "user_id")},
+//            inverseJoinColumns = {@JoinColumn(name = "role_id")}
+//    )
+//    private Set<Role> roles;
 
 }
