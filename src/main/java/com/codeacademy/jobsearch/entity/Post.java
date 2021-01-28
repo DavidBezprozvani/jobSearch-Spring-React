@@ -1,7 +1,10 @@
 package com.codeacademy.jobsearch.entity;
 
 
-
+import com.codeacademy.jobsearch.entity.dto.PostDTO;
+import com.codeacademy.jobsearch.service.mapper.EntityToDtoMapper;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -11,9 +14,6 @@ import java.time.Instant;
 
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@ToString
 @Entity
 public class Post {
 
@@ -48,4 +48,9 @@ public class Post {
     @JoinColumn(name = "company_id")
     private Company company;
 
+
+    private PostDTO convertedPost(Post post) {
+        EntityToDtoMapper entityMapper = null;
+        return entityMapper.convertPostEntityToDTO(post);
+    }
 }

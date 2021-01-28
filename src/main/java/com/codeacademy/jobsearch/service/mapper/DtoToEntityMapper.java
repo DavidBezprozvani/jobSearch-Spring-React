@@ -17,7 +17,7 @@ public class DtoToEntityMapper {
     /**
      * Converts from Post DTO to Post entity
      */
-    public Post convertPostDtoToPostEntity(PostDTO postDTO) {
+    public Post convertPostDtoToEntity(PostDTO postDTO) {
         Post post = new Post();
         BeanUtils.copyProperties(postDTO, post);
         return post;
@@ -27,7 +27,7 @@ public class DtoToEntityMapper {
     /**
      * Converts from Company DTO to Company entity
      */
-    public CompanyDTO convertCompanyDtoToCompanyEntity(Company company) {
+    public CompanyDTO convertCompanyDtoToEntity(Company company) {
         CompanyDTO companyDTO = new CompanyDTO();
         BeanUtils.copyProperties(company, companyDTO);
         return companyDTO;
@@ -36,7 +36,7 @@ public class DtoToEntityMapper {
     /**
      * Converts from User DTO to User entity
      */
-    public UserDTO convertUserDtoToUserEntity(User user) {
+    public UserDTO convertUserDtoToEntity(User user) {
         UserDTO userDTO = new UserDTO();
         BeanUtils.copyProperties(user, userDTO);
         return userDTO;
@@ -45,7 +45,7 @@ public class DtoToEntityMapper {
     /**
      * Converts from Application DTO to Application entity
      */
-    public ApplicationDTO convertCompanyDtoToApplicationEntity(Application application) {
+    public ApplicationDTO convertCompanyDtoToEntity(Application application) {
         ApplicationDTO applicationDTO = new ApplicationDTO();
         BeanUtils.copyProperties(application, applicationDTO);
         return applicationDTO;

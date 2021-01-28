@@ -17,7 +17,7 @@ public class EntityToDtoMapper {
     /**
      * Converts from Post entity to Post DTO
      */
-    public PostDTO convertPostEntityToPostDTO(Post post) {
+    public PostDTO convertPostEntityToDTO(Post post) {
         PostDTO postDTO = new PostDTO();
         postDTO.setId(post.getId());
         postDTO.setType(post.getType());
@@ -38,7 +38,7 @@ public class EntityToDtoMapper {
     /**
      * Converts from Company entity to Company DTO
      */
-    public CompanyDTO convertCompanyEntityToCompanyDTO(Company company) {
+    public CompanyDTO convertCompanyEntityToDTO(Company company) {
         CompanyDTO companyDTO = new CompanyDTO();
         companyDTO.setCompanyName(company.getCompanyName());
         companyDTO.setEmail(company.getEmail());
@@ -51,7 +51,7 @@ public class EntityToDtoMapper {
     /**
      * Converts from User entity to User DTO
      */
-    public UserDTO convertUserEntityToUserDTO(User user) {
+    public UserDTO convertUserEntityToDTO(User user) {
         UserDTO userDTO = new UserDTO();
         userDTO.setEmail(user.getEmail());
         userDTO.setFirstName(user.getFirstName());
@@ -64,7 +64,7 @@ public class EntityToDtoMapper {
     /**
      * Converts from Application entity to Application DTO
      */
-    public ApplicationDTO convertCompanyEntityToApplicationDTO(Application application) {
+    public ApplicationDTO convertApplicationEntityToDTO(Application application) {
         ApplicationDTO applicationDTO = new ApplicationDTO();
         applicationDTO.setTitle(application.getTitle());
         applicationDTO.setBody(application.getBody());

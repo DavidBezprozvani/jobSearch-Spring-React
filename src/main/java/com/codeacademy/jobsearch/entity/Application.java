@@ -20,7 +20,7 @@ public class Application {
 
     private String body;
 
-    @ManyToOne
+    @OneToOne
     private User user;
 
 

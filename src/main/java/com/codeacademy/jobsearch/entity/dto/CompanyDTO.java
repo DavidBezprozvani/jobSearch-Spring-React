@@ -21,4 +21,6 @@ public class CompanyDTO {
     private String address;
 
     private String logoUrl;
+
+
 }

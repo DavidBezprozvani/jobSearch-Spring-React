@@ -7,6 +7,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.util.Collection;
 import java.util.Set;
 
 @Getter
@@ -42,6 +43,9 @@ public class User {
     @Column(name = "profile_picture")
     private String profilePictureUrl;
 
+    @OneToOne
+    private Application application;
+
 //    @ManyToMany
 //    @Cascade(org.hibernate.annotations.CascadeType.PERSIST)
 //    @JoinTable(
@@ -50,5 +54,31 @@ public class User {
 //            inverseJoinColumns = {@JoinColumn(name = "role_id")}
 //    )
 //    private Set<Role> roles;
+
+
+//    @Override
+//    public Collection<? extends GrantedAuthority> getAuthorities() {
+//        return roles;
+//    }
+//
+//    @Override
+//    public boolean isAccountNonExpired() {
+//        return true;
+//    }
+//
+//    @Override
+//    public boolean isAccountNonLocked() {
+//        return true;
+//    }
+//
+//    @Override
+//    public boolean isCredentialsNonExpired() {
+//        return true;
+//    }
+//
+//    @Override
+//    public boolean isEnabled() {
+//        return true;
+//    }
 
 }

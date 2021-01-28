@@ -13,7 +13,6 @@ import java.time.Instant;
 
 @Setter
 @Getter
-@AllArgsConstructor
 @NoArgsConstructor
 public class PostDTO {
 
@@ -42,4 +41,5 @@ public class PostDTO {
     private String companyUrl;
 
     private String logoUrl;
+
 }

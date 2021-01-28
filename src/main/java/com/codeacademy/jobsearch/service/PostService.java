@@ -2,7 +2,7 @@ package com.codeacademy.jobsearch.service;
 
 import com.codeacademy.jobsearch.entity.Post;
 import com.codeacademy.jobsearch.entity.dto.PostDTO;
-import com.codeacademy.jobsearch.exceptions.PostNotFoundException;
+import com.codeacademy.jobsearch.exceptions.EntityNotFoundException;
 import com.codeacademy.jobsearch.service.mapper.DtoToEntityMapper;
 import com.codeacademy.jobsearch.service.mapper.EntityToDtoMapper;
 import com.codeacademy.jobsearch.repository.PostRepository;
@@ -15,9 +15,9 @@ import java.util.stream.Collectors;
 @Service
 public class PostService {
 
-    private final PostRepository postRepository;
-    private final EntityToDtoMapper entityMapper;
-    private final DtoToEntityMapper dtoMapper;
+    private PostRepository postRepository;
+    private EntityToDtoMapper entityMapper;
+    private DtoToEntityMapper dtoMapper;
 
 
     public PostService(PostRepository postRepository, EntityToDtoMapper entityMapper, DtoToEntityMapper dtoMapper) {
@@ -30,17 +30,17 @@ public class PostService {
     public List<PostDTO> getAllPosts() {
         return postRepository.findAll()
                 .stream()
-                .map(jobAd -> entityMapper.convertPostEntityToPostDTO(jobAd))
+                .map(jobAd -> entityMapper.convertPostEntityToDTO(jobAd))
                 .collect(Collectors.toList());
     }
 
     public PostDTO getPostById(Long id) {
         Post post = getPostEntityById(id);
-        return entityMapper.convertPostEntityToPostDTO(post);
+        return entityMapper.convertPostEntityToDTO(post);
     }
 
     public PostDTO createPost(PostDTO postDTO) {
-        Post post = dtoMapper.convertPostDtoToPostEntity(postDTO);
+        Post post = dtoMapper.convertPostDtoToEntity(postDTO);
         Post savedPost = postRepository.save(post);
         postDTO.setId(savedPost.getId());
         return postDTO;
@@ -49,7 +49,7 @@ public class PostService {
     public PostDTO updatePost(PostDTO postDTO) {
         Long id = postDTO.getId();
         if (id == null) {
-            throw new PostNotFoundException(id);
+            throw new EntityNotFoundException(id);
         }
         Post post = getPostEntityById(id);
         BeanUtils.copyProperties(postDTO, post);
@@ -59,7 +59,7 @@ public class PostService {
 
     public void deletePost(Long id) {
         if (!postRepository.existsById(id)) {
-            throw new PostNotFoundException(id);
+            throw new EntityNotFoundException(id);
         }
         postRepository.deleteById(id);
     }
@@ -70,6 +70,6 @@ public class PostService {
 
     Post getPostEntityById(Long id) {
         return postRepository.findById(id)
-                .orElseThrow(() -> new PostNotFoundException(id));
+                .orElseThrow(() -> new EntityNotFoundException(id));
     }
 }

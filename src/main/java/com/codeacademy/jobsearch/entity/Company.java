@@ -1,6 +1,10 @@
 package com.codeacademy.jobsearch.entity;
 
 
+import com.codeacademy.jobsearch.entity.dto.PostDTO;
+import com.codeacademy.jobsearch.service.mapper.EntityToDtoMapper;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
 import javax.persistence.*;
@@ -8,9 +12,6 @@ import java.util.List;
 
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@ToString
 @Entity
 public class Company {
 
@@ -34,7 +35,5 @@ public class Company {
 
     @OneToMany
     private List<Post> posts;
-
-
 
 }
