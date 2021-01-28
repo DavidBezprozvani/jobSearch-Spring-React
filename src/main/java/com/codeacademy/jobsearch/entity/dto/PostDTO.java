@@ -6,13 +6,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.time.Instant;
-import java.time.LocalDateTime;
 
 
 @Setter
@@ -21,9 +17,6 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class PostDTO {
 
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotBlank
