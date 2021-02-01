@@ -1,10 +1,11 @@
 package com.codeacademy.jobsearch.controller;
 
 import com.codeacademy.jobsearch.entity.User;
-import com.codeacademy.jobsearch.entity.dto.PostDTO;
 import com.codeacademy.jobsearch.entity.dto.UserDTO;
 import com.codeacademy.jobsearch.service.UserService;
+import com.codeacademy.jobsearch.service.mapper.EntityToDtoMapper;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -15,10 +16,14 @@ import java.util.List;
 public class UserController {
 
     private UserService userService;
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
+
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public User registerUser(@Valid @RequestBody User user) {
+    public UserDTO registerUser(@RequestBody @Valid User user) {
         return userService.addUser(user);
     }
 

@@ -1,10 +1,9 @@
 package com.codeacademy.jobsearch.controller;
 
-import com.codeacademy.jobsearch.entity.Post;
+
 import com.codeacademy.jobsearch.entity.dto.PostDTO;
 import com.codeacademy.jobsearch.service.PostService;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -32,18 +31,20 @@ public class PostController {
         return postService.getPostById(id);
     }
 
+
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public PostDTO addPost(@RequestBody @Valid PostDTO postDTO) {
+        return postService.createPost(postDTO);
+    }
+
+
     @PutMapping
     @ResponseStatus(HttpStatus.ACCEPTED)
     public PostDTO updatePost(@RequestBody @Valid PostDTO postDTO) {
         return postService.updatePost(postDTO);
     }
 
-    @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    @ResponseBody
-    public PostDTO addPost(@RequestBody @Valid PostDTO postDto) {
-        return postService.createPost(postDto);
-    }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)

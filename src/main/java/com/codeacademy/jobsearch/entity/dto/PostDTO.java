@@ -26,7 +26,7 @@ public class PostDTO {
     private String type;
 
     @NotBlank
-    private Company company;
+    private String companyName;
 
     @NotBlank
     private String description;

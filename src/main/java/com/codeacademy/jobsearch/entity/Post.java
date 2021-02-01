@@ -44,13 +44,12 @@ public class Post {
     @Column(name = "logo_url")
     private String logoUrl;
 
+    @Column(name = "company_name")
+    private String companyName;
+
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "company_id")
     private Company company;
 
 
-    private PostDTO convertedPost(Post post) {
-        EntityToDtoMapper entityMapper = null;
-        return entityMapper.convertPostEntityToDTO(post);
-    }
 }

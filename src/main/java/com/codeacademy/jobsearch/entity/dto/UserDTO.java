@@ -16,10 +16,10 @@ public class UserDTO {
     private String email;
 
     @NotBlank
-    private String firstName;
+    private String name;
 
     @NotBlank
-    private String lastName;
+    private String surname;
 
     private String profilePictureUrl;
 }

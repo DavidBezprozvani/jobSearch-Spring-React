@@ -19,9 +19,6 @@ public class Company {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(unique = true, nullable = false)
-    private String email;
-
     @Column(name = "registration_code")
     private Long registrationCode;
 

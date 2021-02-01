@@ -1,9 +1,7 @@
 package com.codeacademy.jobsearch.service;
 
 import com.codeacademy.jobsearch.entity.Company;
-import com.codeacademy.jobsearch.entity.User;
 import com.codeacademy.jobsearch.entity.dto.CompanyDTO;
-import com.codeacademy.jobsearch.entity.dto.UserDTO;
 import com.codeacademy.jobsearch.exceptions.EntityNotFoundException;
 import com.codeacademy.jobsearch.repository.CompanyRepository;
 import com.codeacademy.jobsearch.service.mapper.EntityToDtoMapper;
@@ -17,6 +15,11 @@ public class CompanyService {
 
     private CompanyRepository companyRepository;
     private EntityToDtoMapper entityMapper;
+
+    public CompanyService(CompanyRepository companyRepository, EntityToDtoMapper entityMapper) {
+        this.companyRepository = companyRepository;
+        this.entityMapper = entityMapper;
+    }
 
     public List<CompanyDTO> getAllCompanies() {
         return companyRepository.findAll()

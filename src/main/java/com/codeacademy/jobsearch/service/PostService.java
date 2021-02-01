@@ -65,7 +65,7 @@ public class PostService {
     }
 
 
-    // TODO: getByType / getByTitle / getByLocation / getByCompanyId / save / update
+    // TODO: getByType / getByTitle / getByLocation / getByCompanyId
 
 
     Post getPostEntityById(Long id) {

@@ -26,15 +26,15 @@ public class CompanyController {
     }
 
     @GetMapping
-    public List<CompanyDTO> getAllUsers() {
+    public List<CompanyDTO> getAllCompanies() {
         return companyService.getAllCompanies();
     }
 
     @GetMapping("/{id}")
-    public CompanyDTO getUserById(@PathVariable Long id) {
+    public CompanyDTO getCompanyById(@PathVariable Long id) {
         return companyService.getCompanyById(id);
     }
 
-    // TODO: get by users name, update user
+    // TODO: get by company name, update company
 
 }
