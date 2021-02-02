@@ -23,12 +23,13 @@ public class DtoToEntityMapper {
         post.setType(postDTO.getType());
         post.setCompanyName(postDTO.getCompanyName());
         post.setDescription(postDTO.getDescription());
+        post.setSummary(postDTO.getSummary());
         post.setCreatedAt(postDTO.getCreatedAt());
         post.setLocation(postDTO.getLocation());
         post.setTitle(postDTO.getTitle());
         post.setCompanyUrl(postDTO.getCompanyUrl());
         post.setApplyUrl(postDTO.getApplyUrl());
-        post.setLogoUrl(postDTO.getLogoUrl());
+        post.setLogoUrl(postDTO.getCompanyUrl());
 //        BeanUtils.copyProperties(postDTO, post);
         return post;
 

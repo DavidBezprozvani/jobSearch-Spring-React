@@ -29,6 +29,8 @@ public class Post {
     @Lob
     private String description;
 
+    private String summary;
+
     @CreationTimestamp
     @Column(name = "created_at")
     private Instant createdAt;
@@ -47,8 +49,8 @@ public class Post {
     @Column(name = "company_name")
     private String companyName;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "company_id")
+    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "company_id")
     private Company company;
 
 

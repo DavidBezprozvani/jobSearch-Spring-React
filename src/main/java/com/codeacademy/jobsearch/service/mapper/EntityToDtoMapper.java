@@ -21,16 +21,16 @@ public class EntityToDtoMapper {
         PostDTO postDTO = new PostDTO();
         postDTO.setId(post.getId());
         postDTO.setType(post.getType());
-//        postDTO.setCompanyName(post.getCompany().getCompanyName());
-        postDTO.setCompanyName(post.getCompanyName());
+        postDTO.setCompanyName(post.getCompany().getCompanyName());
+//        postDTO.setCompanyName(post.getCompanyName());
         postDTO.setDescription(post.getDescription());
+        postDTO.setSummary(post.getSummary());
         postDTO.setCreatedAt(post.getCreatedAt());
         postDTO.setLocation(post.getLocation());
         postDTO.setTitle(post.getTitle());
         postDTO.setCompanyUrl(post.getCompanyUrl());
         postDTO.setApplyUrl(post.getApplyUrl());
-        postDTO.setLogoUrl(post.getLogoUrl());
-//        BeanUtils.copyProperties(post, postDTO);
+        postDTO.setLogoUrl(post.getCompany().getLogoUrl());
         return postDTO;
 
     }
@@ -43,7 +43,6 @@ public class EntityToDtoMapper {
         companyDTO.setCompanyName(company.getCompanyName());
         companyDTO.setAddress(company.getAddress());
         companyDTO.setLogoUrl(company.getLogoUrl());
-//        BeanUtils.copyProperties(company, companyDTO);
         return companyDTO;
     }
 
@@ -56,7 +55,6 @@ public class EntityToDtoMapper {
         userDTO.setName(user.getName());
         userDTO.setSurname(user.getSurname());
         userDTO.setProfilePictureUrl(user.getProfilePictureUrl());
-//        BeanUtils.copyProperties(user, userDTO);
         return userDTO;
     }
 

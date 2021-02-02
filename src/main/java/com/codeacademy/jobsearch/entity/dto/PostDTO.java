@@ -31,6 +31,9 @@ public class PostDTO {
     @NotBlank
     private String description;
 
+    @Size(min = 3, max = 40)
+    private String summary;
+
     private Instant createdAt;
 
     @NotBlank
