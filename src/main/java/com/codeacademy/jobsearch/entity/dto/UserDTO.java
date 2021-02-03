@@ -12,6 +12,9 @@ import javax.validation.constraints.NotBlank;
 @NoArgsConstructor
 public class UserDTO {
 
+    @NotBlank
+    private String username;
+
     @Email
     private String email;
 

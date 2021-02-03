@@ -1,5 +1,6 @@
 package com.codeacademy.jobsearch.service;
 
+import com.codeacademy.jobsearch.entity.Role;
 import com.codeacademy.jobsearch.entity.User;
 import com.codeacademy.jobsearch.entity.dto.UserDTO;
 import com.codeacademy.jobsearch.exceptions.EntityNotFoundException;
@@ -7,9 +8,11 @@ import com.codeacademy.jobsearch.repository.UserRepository;
 import com.codeacademy.jobsearch.service.mapper.EntityToDtoMapper;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -17,10 +20,13 @@ public class UserService implements UserDetailsService {
 
     private UserRepository userRepository;
     private EntityToDtoMapper entityMapper;
+    private PasswordEncoder passwordEncoder;
 
-    public UserService(UserRepository userRepository, EntityToDtoMapper entityMapper) {
+
+    public UserService(UserRepository userRepository, EntityToDtoMapper entityMapper, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.entityMapper = entityMapper;
+        this.passwordEncoder = passwordEncoder;
     }
 
 
@@ -38,6 +44,8 @@ public class UserService implements UserDetailsService {
 
     public UserDTO addUser(User user){
         User savedUser = userRepository.save(user);
+        savedUser.setPassword(passwordEncoder.encode(user.getPassword()));
+        savedUser.setRoles(Set.of(new Role(2L, "USER")));
         return entityMapper.convertUserEntityToDTO(savedUser);
     }
 

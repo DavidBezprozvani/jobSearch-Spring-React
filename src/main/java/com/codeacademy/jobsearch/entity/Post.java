@@ -43,14 +43,13 @@ public class Post {
     @Column(name = "company_url")
     private String companyUrl;
 
-    @Column(name = "logo_url")
-    private String logoUrl;
+//    @Column(name = "logo_url")
+//    private String logoUrl;
 
     @Column(name = "company_name")
     private String companyName;
 
     @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "company_id")
     private Company company;
 
 

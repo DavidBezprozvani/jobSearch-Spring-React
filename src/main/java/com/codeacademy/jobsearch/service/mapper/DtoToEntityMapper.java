@@ -29,8 +29,7 @@ public class DtoToEntityMapper {
         post.setTitle(postDTO.getTitle());
         post.setCompanyUrl(postDTO.getCompanyUrl());
         post.setApplyUrl(postDTO.getApplyUrl());
-        post.setLogoUrl(postDTO.getCompanyUrl());
-//        BeanUtils.copyProperties(postDTO, post);
+//        post.setLogoUrl(postDTO.g());
         return post;
 
     }
@@ -38,28 +37,35 @@ public class DtoToEntityMapper {
     /**
      * Converts from Company DTO to Company entity
      */
-    public CompanyDTO convertCompanyDtoToEntity(Company company) {
-        CompanyDTO companyDTO = new CompanyDTO();
-        BeanUtils.copyProperties(company, companyDTO);
-        return companyDTO;
+    public Company convertCompanyDtoToEntity(CompanyDTO companyDTO) {
+        Company company = new Company();
+        company.setCompanyName(companyDTO.getCompanyName());
+        company.setAddress(companyDTO.getAddress());
+        company.setLogoUrl(companyDTO.getLogoUrl());
+        return company;
     }
 
     /**
      * Converts from User DTO to User entity
      */
-    public UserDTO convertUserDtoToEntity(User user) {
-        UserDTO userDTO = new UserDTO();
-        BeanUtils.copyProperties(user, userDTO);
-        return userDTO;
+    public User convertUserDtoToEntity(UserDTO userDTO) {
+        User user = new User();
+        user.setUsername(userDTO.getUsername());
+        user.setName(userDTO.getName());
+        user.setSurname(userDTO.getSurname());
+        user.setEmail(userDTO.getEmail());
+        user.setProfilePictureUrl(userDTO.getProfilePictureUrl());
+        return user;
     }
 
     /**
      * Converts from Application DTO to Application entity
      */
-    public ApplicationDTO convertCompanyDtoToEntity(Application application) {
-        ApplicationDTO applicationDTO = new ApplicationDTO();
-        BeanUtils.copyProperties(application, applicationDTO);
-        return applicationDTO;
+    public Application convertCompanyDtoToEntity(ApplicationDTO applicationDTO) {
+        Application application = new Application();
+        application.setTitle(applicationDTO.getTitle());
+        application.setBody(applicationDTO.getBody());
+        return application;
     }
 }
 
