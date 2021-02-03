@@ -18,6 +18,7 @@ public class LoginController {
 
     @PostMapping("/login")
     public UserDTO user(@AuthenticationPrincipal User user) {
-        return userService.getUserDtoByUser(user);
+//        return userService.getUserDtoByUser(user);
+        return new UserDTO(user);
     }
 }

@@ -1,15 +1,14 @@
 package com.codeacademy.jobsearch.service.mapper;
 
-import com.codeacademy.jobsearch.entity.Application;
-import com.codeacademy.jobsearch.entity.Company;
-import com.codeacademy.jobsearch.entity.Post;
-import com.codeacademy.jobsearch.entity.User;
+import com.codeacademy.jobsearch.entity.*;
 import com.codeacademy.jobsearch.entity.dto.ApplicationDTO;
 import com.codeacademy.jobsearch.entity.dto.CompanyDTO;
 import com.codeacademy.jobsearch.entity.dto.PostDTO;
 import com.codeacademy.jobsearch.entity.dto.UserDTO;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Component;
+
+import java.util.Set;
 
 @Component
 public class DtoToEntityMapper {
@@ -51,10 +50,12 @@ public class DtoToEntityMapper {
     public User convertUserDtoToEntity(UserDTO userDTO) {
         User user = new User();
         user.setUsername(userDTO.getUsername());
+        user.setPassword(userDTO.getPassword());
         user.setName(userDTO.getName());
         user.setSurname(userDTO.getSurname());
         user.setEmail(userDTO.getEmail());
         user.setProfilePictureUrl(userDTO.getProfilePictureUrl());
+//        user.setRoles(Set.of(new Role(2L, "USER")));
         return user;
     }
 

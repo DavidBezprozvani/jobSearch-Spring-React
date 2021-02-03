@@ -1,15 +1,13 @@
 package com.codeacademy.jobsearch.service.mapper;
 
-import com.codeacademy.jobsearch.entity.Application;
-import com.codeacademy.jobsearch.entity.Company;
-import com.codeacademy.jobsearch.entity.Post;
-import com.codeacademy.jobsearch.entity.User;
+import com.codeacademy.jobsearch.entity.*;
 import com.codeacademy.jobsearch.entity.dto.ApplicationDTO;
 import com.codeacademy.jobsearch.entity.dto.CompanyDTO;
 import com.codeacademy.jobsearch.entity.dto.PostDTO;
 import com.codeacademy.jobsearch.entity.dto.UserDTO;
-import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Component;
+
+import java.util.stream.Collectors;
 
 @Component
 public class EntityToDtoMapper {
@@ -51,11 +49,16 @@ public class EntityToDtoMapper {
      */
     public UserDTO convertUserEntityToDTO(User user) {
         UserDTO userDTO = new UserDTO();
+        userDTO.setId(user.getId());
         userDTO.setUsername(user.getUsername());
+        userDTO.setPassword(user.getPassword());
         userDTO.setEmail(user.getEmail());
         userDTO.setName(user.getName());
         userDTO.setSurname(user.getSurname());
         userDTO.setProfilePictureUrl(user.getProfilePictureUrl());
+        userDTO.setRoles(user.getRoles().stream()
+                .map(Role::getRoleName)
+                .collect(Collectors.toSet()));
         return userDTO;
     }
 

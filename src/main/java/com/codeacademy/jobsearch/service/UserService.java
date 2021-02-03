@@ -4,6 +4,7 @@ import com.codeacademy.jobsearch.entity.Role;
 import com.codeacademy.jobsearch.entity.User;
 import com.codeacademy.jobsearch.entity.dto.UserDTO;
 import com.codeacademy.jobsearch.exceptions.EntityNotFoundException;
+import com.codeacademy.jobsearch.repository.RoleRepository;
 import com.codeacademy.jobsearch.repository.UserRepository;
 import com.codeacademy.jobsearch.service.mapper.EntityToDtoMapper;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -12,7 +13,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -21,12 +21,14 @@ public class UserService implements UserDetailsService {
     private UserRepository userRepository;
     private EntityToDtoMapper entityMapper;
     private PasswordEncoder passwordEncoder;
+    private RoleRepository roleRepository;
 
 
-    public UserService(UserRepository userRepository, EntityToDtoMapper entityMapper, PasswordEncoder passwordEncoder) {
+    public UserService(UserRepository userRepository, EntityToDtoMapper entityMapper, PasswordEncoder passwordEncoder, RoleRepository roleRepository) {
         this.userRepository = userRepository;
         this.entityMapper = entityMapper;
         this.passwordEncoder = passwordEncoder;
+        this.roleRepository = roleRepository;
     }
 
 
@@ -42,10 +44,22 @@ public class UserService implements UserDetailsService {
     }
 
 
+//    public User addUser(UserDTO userDTO){
+//        User user = new User();
+//        Role role = roleRepository.getOne(2L);
+//        user.addRole(role);
+//        user.setPassword(passwordEncoder.encode(userDTO.getPassword()));
+//
+//        return userRepository.save(user);
+//
+//    }
+
     public UserDTO addUser(User user){
+        Role role = roleRepository.getOne(2L);
+        user.addRole(role);
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         User savedUser = userRepository.save(user);
-        savedUser.setPassword(passwordEncoder.encode(user.getPassword()));
-        savedUser.setRoles(Set.of(new Role(2L, "USER")));
+
         return entityMapper.convertUserEntityToDTO(savedUser);
     }
 
