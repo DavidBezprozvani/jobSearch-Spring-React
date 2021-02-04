@@ -20,15 +20,12 @@ public class DtoToEntityMapper {
         Post post = new Post();
         post.setId(postDTO.getId());
         post.setType(postDTO.getType());
-        post.setCompanyName(postDTO.getCompanyName());
         post.setDescription(postDTO.getDescription());
         post.setSummary(postDTO.getSummary());
         post.setCreatedAt(postDTO.getCreatedAt());
         post.setLocation(postDTO.getLocation());
         post.setTitle(postDTO.getTitle());
-        post.setCompanyUrl(postDTO.getCompanyUrl());
         post.setApplyUrl(postDTO.getApplyUrl());
-//        post.setLogoUrl(postDTO.g());
         return post;
 
     }
@@ -41,6 +38,7 @@ public class DtoToEntityMapper {
         company.setCompanyName(companyDTO.getCompanyName());
         company.setAddress(companyDTO.getAddress());
         company.setLogoUrl(companyDTO.getLogoUrl());
+        company.setCompanyUrl(companyDTO.getCompanyUrl());
         return company;
     }
 
@@ -55,7 +53,6 @@ public class DtoToEntityMapper {
         user.setSurname(userDTO.getSurname());
         user.setEmail(userDTO.getEmail());
         user.setProfilePictureUrl(userDTO.getProfilePictureUrl());
-//        user.setRoles(Set.of(new Role(2L, "USER")));
         return user;
     }
 

@@ -27,6 +27,9 @@ public class Company {
     @Column(name = "logo_url")
     private String logoUrl;
 
+    @Column(name = "company_url")
+    private String companyUrl;
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "company")
     private List<Post> posts;
 
