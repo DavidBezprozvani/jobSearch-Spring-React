@@ -12,6 +12,8 @@ import java.util.List;
 @NoArgsConstructor
 public class CompanyDTO {
 
+    private Long id;
+
     @NotBlank
     private String companyName;
 

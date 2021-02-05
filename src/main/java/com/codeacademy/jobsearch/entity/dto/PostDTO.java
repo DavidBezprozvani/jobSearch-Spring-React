@@ -1,10 +1,5 @@
 package com.codeacademy.jobsearch.entity.dto;
 
-import com.codeacademy.jobsearch.entity.Company;
-import com.codeacademy.jobsearch.entity.Post;
-import com.codeacademy.jobsearch.entity.Role;
-import com.codeacademy.jobsearch.entity.User;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -13,8 +8,6 @@ import javax.persistence.Column;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.time.Instant;
-import java.time.LocalDateTime;
-import java.util.stream.Collectors;
 
 
 @Setter
@@ -46,5 +39,7 @@ public class PostDTO {
     private String applyUrl;
 
     private String logoUrl;
+
+    private Long companyId;
 
 }

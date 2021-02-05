@@ -35,12 +35,6 @@ public class Post {
     @Column(name = "apply_url")
     private String applyUrl;
 
-//    @Column(name = "logo_url")
-//    private String logoUrl;
-
-//    @Column(name = "company_name")
-//    private String companyName;
-
     @ManyToOne(fetch = FetchType.LAZY)
     private Company company;
 

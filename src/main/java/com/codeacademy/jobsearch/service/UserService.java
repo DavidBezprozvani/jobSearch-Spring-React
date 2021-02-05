@@ -44,22 +44,13 @@ public class UserService implements UserDetailsService {
     }
 
 
-//    public User addUser(UserDTO userDTO){
-//        User user = new User();
-//        Role role = roleRepository.getOne(2L);
-//        user.addRole(role);
-//        user.setPassword(passwordEncoder.encode(userDTO.getPassword()));
-//
-//        return userRepository.save(user);
-//
-//    }
+
 
     public UserDTO addUser(User user){
         Role role = roleRepository.getOne(2L);
         user.addRole(role);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         User savedUser = userRepository.save(user);
-
         return entityMapper.convertUserEntityToDTO(savedUser);
     }
 

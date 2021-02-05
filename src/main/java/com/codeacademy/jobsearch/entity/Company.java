@@ -1,10 +1,9 @@
 package com.codeacademy.jobsearch.entity;
 
-
-
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -31,6 +30,10 @@ public class Company {
     private String companyUrl;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "company")
-    private List<Post> posts;
+    private List<Post> posts = new ArrayList<>();
 
+//    public void addPost(Post post) {
+//        this.posts.add(post);
+//        post.setCompany(this);
+//    }
 }

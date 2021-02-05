@@ -1,6 +1,7 @@
 package com.codeacademy.jobsearch.controller;
 
 
+import com.codeacademy.jobsearch.entity.Post;
 import com.codeacademy.jobsearch.entity.dto.PostDTO;
 import com.codeacademy.jobsearch.service.PostService;
 import org.springframework.http.HttpStatus;

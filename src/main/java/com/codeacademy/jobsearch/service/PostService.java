@@ -1,14 +1,17 @@
 package com.codeacademy.jobsearch.service;
 
+import com.codeacademy.jobsearch.entity.Company;
 import com.codeacademy.jobsearch.entity.Post;
 import com.codeacademy.jobsearch.entity.dto.PostDTO;
 import com.codeacademy.jobsearch.exceptions.EntityNotFoundException;
+import com.codeacademy.jobsearch.repository.CompanyRepository;
 import com.codeacademy.jobsearch.service.mapper.DtoToEntityMapper;
 import com.codeacademy.jobsearch.service.mapper.EntityToDtoMapper;
 import com.codeacademy.jobsearch.repository.PostRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -18,12 +21,14 @@ public class PostService {
     private PostRepository postRepository;
     private EntityToDtoMapper entityMapper;
     private DtoToEntityMapper dtoMapper;
+    private CompanyRepository companyRepository;
 
 
-    public PostService(PostRepository postRepository, EntityToDtoMapper entityMapper, DtoToEntityMapper dtoMapper) {
+    public PostService(PostRepository postRepository, EntityToDtoMapper entityMapper, DtoToEntityMapper dtoMapper, CompanyRepository companyRepository) {
         this.postRepository = postRepository;
         this.entityMapper = entityMapper;
         this.dtoMapper = dtoMapper;
+        this.companyRepository = companyRepository;
     }
 
 
@@ -39,11 +44,13 @@ public class PostService {
         return entityMapper.convertPostEntityToDTO(post);
     }
 
-    public PostDTO createPost(PostDTO postDTO) {
+    public PostDTO createPost(@Valid PostDTO postDTO) {
+        Company company = companyRepository.getOne(postDTO.getCompanyId());
         Post post = dtoMapper.convertPostDtoToEntity(postDTO);
+        post.setCompany(company);
         Post savedPost = postRepository.save(post);
-        postDTO.setId(savedPost.getId());
-        return postDTO;
+        return entityMapper.convertPostEntityToDTO(savedPost, postDTO.getCompanyId());
+
     }
 
     public PostDTO updatePost(PostDTO postDTO) {
@@ -52,7 +59,7 @@ public class PostService {
             throw new EntityNotFoundException(id);
         }
         Post post = getPostEntityById(id);
-        BeanUtils.copyProperties(postDTO, post);
+        post.setCompany(companyRepository.getOne(postDTO.getCompanyId()));
         postRepository.save(post);
         return postDTO;
     }
