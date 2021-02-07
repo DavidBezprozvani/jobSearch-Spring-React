@@ -18,11 +18,14 @@ public class CompanyDTO {
     private String companyName;
 
     @NotBlank
+    private Long registrationCode;
+
+    @NotBlank
     private String address;
 
     private String logoUrl;
 
-    private List<PostDTO> posts;
+//    private List<PostDTO> posts;
 
     private String companyUrl;
 

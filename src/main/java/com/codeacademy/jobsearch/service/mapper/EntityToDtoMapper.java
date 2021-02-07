@@ -38,8 +38,10 @@ public class EntityToDtoMapper {
         CompanyDTO companyDTO = new CompanyDTO();
         companyDTO.setId(company.getId());
         companyDTO.setCompanyName(company.getCompanyName());
+        companyDTO.setRegistrationCode(company.getRegistrationCode());
         companyDTO.setAddress(company.getAddress());
         companyDTO.setLogoUrl(company.getLogoUrl());
+        companyDTO.setCompanyUrl(company.getCompanyUrl());
         return companyDTO;
     }
 

@@ -59,9 +59,17 @@ public class PostService {
             throw new EntityNotFoundException(id);
         }
         Post post = getPostEntityById(id);
+        post.setTitle(postDTO.getTitle());
         post.setCompany(companyRepository.getOne(postDTO.getCompanyId()));
-        postRepository.save(post);
-        return postDTO;
+        post.setDescription(postDTO.getDescription());
+        post.setSummary(postDTO.getSummary());
+        post.setApplyUrl(postDTO.getApplyUrl());
+        post.setCreatedAt(postDTO.getCreatedAt());
+        post.setLocation(postDTO.getLocation());
+        post.setType(postDTO.getType());
+
+        Post updatedPost = postRepository.save(post);
+        return entityMapper.convertPostEntityToDTO(updatedPost);
     }
 
     public void deletePost(Long id) {

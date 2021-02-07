@@ -16,8 +16,8 @@ INSERT INTO USER_ROLES (user_id, role_id) VALUES
 
 
 INSERT INTO Company (id, registration_code, company_name, address, logo_url, company_url)
-VALUES (1, 11111, 'iFit', 'Queen str 13, London, UK',
-        'https://upload.wikimedia.org/wikipedia/en/5/5b/IFit_logo_Current.jpg', '#'),
+VALUES (1, 11111, 'INVL Asset Management', 'Vilniaus rajonas, London, UK',
+        'https://www.invl.com/img/invl_logo.png', '#'),
        (2, 22222, 'Revolut', 'JFK str 6, New York, USA',
         'https://pbs.twimg.com/profile_images/1252626966836060162/qXAAYQYP.png', '#'),
        (3, 33333, 'DevBridge', 'Word str 7, Word, Wales',

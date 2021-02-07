@@ -27,6 +27,7 @@ public class PostController {
 
     @GetMapping
     public List<PostDTO> getAllPosts() {
+
         return postService.getAllPosts();
     }
 
@@ -44,12 +45,14 @@ public class PostController {
     }
 
 
-    @PutMapping
+    @PutMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN') || hasRole('USER')")
     @ResponseStatus(HttpStatus.ACCEPTED)
     public PostDTO updatePost(@RequestBody @Valid PostDTO postDTO) {
         return postService.updatePost(postDTO);
     }
+
+
 
 
     @DeleteMapping("/{id}")
