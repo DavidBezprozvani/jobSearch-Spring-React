@@ -3,11 +3,11 @@
 # jobSearch-Spring-React
 
 ## LAUNCHING INSTRUCTIONS
-BACKEND<br/>
+## BACKEND<br/>
 ### `git clone https://github.com/DavidBezprozvani/jobSearch-Spring-React.git`<br/>
 ### `Run`<br/>
 
-FRONTEND<br/>
+## FRONTEND<br/>
 ### `git clone https://github.com/DavidBezprozvani/jobSearch-Front.git`<br/>
 ### `NPM START` <br/>
 ### `Open http://localhost:3000 to view it in the browser.` <br/>
