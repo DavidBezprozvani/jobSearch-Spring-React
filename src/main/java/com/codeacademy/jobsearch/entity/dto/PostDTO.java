@@ -1,5 +1,6 @@
 package com.codeacademy.jobsearch.entity.dto;
 
+import com.codeacademy.jobsearch.entity.Company;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

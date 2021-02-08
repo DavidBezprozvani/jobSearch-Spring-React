@@ -9,6 +9,8 @@ import com.codeacademy.jobsearch.service.mapper.DtoToEntityMapper;
 import com.codeacademy.jobsearch.service.mapper.EntityToDtoMapper;
 import com.codeacademy.jobsearch.repository.PostRepository;
 import org.springframework.beans.BeanUtils;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.validation.Valid;
@@ -39,6 +41,7 @@ public class PostService {
                 .collect(Collectors.toList());
     }
 
+
     public PostDTO getPostById(Long id) {
         Post post = getPostEntityById(id);
         return entityMapper.convertPostEntityToDTO(post);
@@ -48,6 +51,7 @@ public class PostService {
         Company company = companyRepository.getOne(postDTO.getCompanyId());
         Post post = dtoMapper.convertPostDtoToEntity(postDTO);
         post.setCompany(company);
+        postDTO.setLogoUrl(post.getCompany().getLogoUrl());
         Post savedPost = postRepository.save(post);
         return entityMapper.convertPostEntityToDTO(savedPost, postDTO.getCompanyId());
 
@@ -59,6 +63,7 @@ public class PostService {
             throw new EntityNotFoundException(id);
         }
         Post post = getPostEntityById(id);
+//        post.setId(postDTO.getId());
         post.setTitle(postDTO.getTitle());
         post.setCompany(companyRepository.getOne(postDTO.getCompanyId()));
         post.setDescription(postDTO.getDescription());
@@ -67,6 +72,7 @@ public class PostService {
         post.setCreatedAt(postDTO.getCreatedAt());
         post.setLocation(postDTO.getLocation());
         post.setType(postDTO.getType());
+//        post.setLogoUrl(companyRepository.getOne(postDTO.getCompanyId()).getLogoUrl());
 
         Post updatedPost = postRepository.save(post);
         return entityMapper.convertPostEntityToDTO(updatedPost);

@@ -36,6 +36,7 @@ public class DtoToEntityMapper {
     public Company convertCompanyDtoToEntity(CompanyDTO companyDTO) {
         Company company = new Company();
         company.setCompanyName(companyDTO.getCompanyName());
+        company.setRegistrationCode(companyDTO.getRegistrationCode());
         company.setAddress(companyDTO.getAddress());
         company.setLogoUrl(companyDTO.getLogoUrl());
         company.setCompanyUrl(companyDTO.getCompanyUrl());

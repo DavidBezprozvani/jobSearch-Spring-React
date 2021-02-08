@@ -1,11 +1,9 @@
 package com.codeacademy.jobsearch.controller;
 
 
-import com.codeacademy.jobsearch.entity.Post;
 import com.codeacademy.jobsearch.entity.dto.PostDTO;
 import com.codeacademy.jobsearch.service.PostService;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
@@ -27,7 +25,6 @@ public class PostController {
 
     @GetMapping
     public List<PostDTO> getAllPosts() {
-
         return postService.getAllPosts();
     }
 
@@ -45,14 +42,12 @@ public class PostController {
     }
 
 
-    @PutMapping("/{id}")
+    @PutMapping("/update/{id}")
     @PreAuthorize("hasRole('ADMIN') || hasRole('USER')")
     @ResponseStatus(HttpStatus.ACCEPTED)
     public PostDTO updatePost(@RequestBody @Valid PostDTO postDTO) {
         return postService.updatePost(postDTO);
     }
-
-
 
 
     @DeleteMapping("/{id}")

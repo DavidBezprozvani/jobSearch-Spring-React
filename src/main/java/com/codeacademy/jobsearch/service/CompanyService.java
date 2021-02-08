@@ -1,9 +1,11 @@
 package com.codeacademy.jobsearch.service;
 
 import com.codeacademy.jobsearch.entity.Company;
+import com.codeacademy.jobsearch.entity.Post;
 import com.codeacademy.jobsearch.entity.dto.CompanyDTO;
 import com.codeacademy.jobsearch.exceptions.EntityNotFoundException;
 import com.codeacademy.jobsearch.repository.CompanyRepository;
+import com.codeacademy.jobsearch.service.mapper.DtoToEntityMapper;
 import com.codeacademy.jobsearch.service.mapper.EntityToDtoMapper;
 import org.springframework.stereotype.Service;
 
@@ -15,10 +17,12 @@ public class CompanyService {
 
     private CompanyRepository companyRepository;
     private EntityToDtoMapper entityMapper;
+    private DtoToEntityMapper dtoMapper;
 
-    public CompanyService(CompanyRepository companyRepository, EntityToDtoMapper entityMapper) {
+    public CompanyService(CompanyRepository companyRepository, EntityToDtoMapper entityMapper, DtoToEntityMapper dtoMapper) {
         this.companyRepository = companyRepository;
         this.entityMapper = entityMapper;
+        this.dtoMapper = dtoMapper;
     }
 
     public List<CompanyDTO> getAllCompanies() {
@@ -36,6 +40,23 @@ public class CompanyService {
     public Company addCompany(Company company){
         return companyRepository.save(company);
     }
+
+
+    public CompanyDTO updateCompany(CompanyDTO companyDTO) {
+        Long id = companyDTO.getId();
+        if (id == null) {
+            throw new EntityNotFoundException(id);
+        }
+        Company company = getCompanyEntityById(id);
+        company.setId(companyDTO.getId());
+        company.setCompanyName(companyDTO.getCompanyName());
+        company.setRegistrationCode(companyDTO.getRegistrationCode());
+        company.setAddress(companyDTO.getAddress());
+        company.setCompanyUrl(companyDTO.getCompanyUrl());
+        company.setLogoUrl(companyDTO.getLogoUrl());
+        return entityMapper.convertCompanyEntityToDTO(company);
+    }
+
 
 
     // TODO: get by company name, update company

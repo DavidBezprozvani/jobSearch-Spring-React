@@ -32,8 +32,4 @@ public class Company {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "company")
     private List<Post> posts = new ArrayList<>();
 
-//    public void addPost(Post post) {
-//        this.posts.add(post);
-//        post.setCompany(this);
-//    }
 }

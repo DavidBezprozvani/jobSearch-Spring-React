@@ -38,5 +38,7 @@ public class Post {
     @ManyToOne(fetch = FetchType.LAZY)
     private Company company;
 
+//    private String logoUrl;
+
 
 }
