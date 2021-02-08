@@ -27,7 +27,7 @@ The aim of the project is to create an online job portal, where the user can vie
   •	Login: `user`<br/>
   •	Password: `user`<br/>
 
-Anonymous
+### Anonymous<br/>
 •	View Companies, Posts.
 
 
