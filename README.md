@@ -1,5 +1,6 @@
-# jobSearch-Spring-React
 
+![alt text](https://github.com/DavidBezprozvani/jobSearch-Front/blob/main/public/JOBER.svg)
+# jobSearch-Spring-React
 
 # LAUNCHING INSTRUCTIONS
 BACKEND<br/>
