@@ -5,7 +5,6 @@ import com.codeacademy.jobsearch.entity.dto.PostDTO;
 import com.codeacademy.jobsearch.service.PostService;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -35,7 +34,7 @@ public class PostController {
 
 
     @PostMapping
-    @PreAuthorize("hasRole('ADMIN') || hasRole('USER')")
+    @PreAuthorize("hasRole('ADMIN')")
     @ResponseStatus(HttpStatus.CREATED)
     public PostDTO addPost(@RequestBody @Valid PostDTO postDTO) {
         return postService.createPost(postDTO);

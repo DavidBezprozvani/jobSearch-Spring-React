@@ -5,15 +5,11 @@ import com.codeacademy.jobsearch.entity.Post;
 import com.codeacademy.jobsearch.entity.dto.PostDTO;
 import com.codeacademy.jobsearch.exceptions.EntityNotFoundException;
 import com.codeacademy.jobsearch.repository.CompanyRepository;
-import com.codeacademy.jobsearch.service.mapper.DtoToEntityMapper;
-import com.codeacademy.jobsearch.service.mapper.EntityToDtoMapper;
+import com.codeacademy.jobsearch.service.mapper.DtoMapper;
+import com.codeacademy.jobsearch.service.mapper.EntityMapper;
 import com.codeacademy.jobsearch.repository.PostRepository;
-import org.springframework.beans.BeanUtils;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import javax.validation.Valid;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -21,12 +17,12 @@ import java.util.stream.Collectors;
 public class PostService {
 
     private PostRepository postRepository;
-    private EntityToDtoMapper entityMapper;
-    private DtoToEntityMapper dtoMapper;
+    private EntityMapper entityMapper;
+    private DtoMapper dtoMapper;
     private CompanyRepository companyRepository;
 
 
-    public PostService(PostRepository postRepository, EntityToDtoMapper entityMapper, DtoToEntityMapper dtoMapper, CompanyRepository companyRepository) {
+    public PostService(PostRepository postRepository, EntityMapper entityMapper, DtoMapper dtoMapper, CompanyRepository companyRepository) {
         this.postRepository = postRepository;
         this.entityMapper = entityMapper;
         this.dtoMapper = dtoMapper;
@@ -37,7 +33,7 @@ public class PostService {
     public List<PostDTO> getAllPosts() {
         return postRepository.findAll()
                 .stream()
-                .map(jobAd -> entityMapper.convertPostEntityToDTO(jobAd))
+                .map(post -> entityMapper.convertPostEntityToDTO(post))
                 .collect(Collectors.toList());
     }
 
@@ -47,14 +43,13 @@ public class PostService {
         return entityMapper.convertPostEntityToDTO(post);
     }
 
-    public PostDTO createPost(@Valid PostDTO postDTO) {
+    public PostDTO createPost(PostDTO postDTO) {
         Company company = companyRepository.getOne(postDTO.getCompanyId());
         Post post = dtoMapper.convertPostDtoToEntity(postDTO);
         post.setCompany(company);
         postDTO.setLogoUrl(post.getCompany().getLogoUrl());
         Post savedPost = postRepository.save(post);
         return entityMapper.convertPostEntityToDTO(savedPost, postDTO.getCompanyId());
-
     }
 
     public PostDTO updatePost(PostDTO postDTO) {

@@ -1,12 +1,11 @@
 package com.codeacademy.jobsearch.service;
 
 import com.codeacademy.jobsearch.entity.Company;
-import com.codeacademy.jobsearch.entity.Post;
 import com.codeacademy.jobsearch.entity.dto.CompanyDTO;
 import com.codeacademy.jobsearch.exceptions.EntityNotFoundException;
 import com.codeacademy.jobsearch.repository.CompanyRepository;
-import com.codeacademy.jobsearch.service.mapper.DtoToEntityMapper;
-import com.codeacademy.jobsearch.service.mapper.EntityToDtoMapper;
+import com.codeacademy.jobsearch.service.mapper.DtoMapper;
+import com.codeacademy.jobsearch.service.mapper.EntityMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,10 +15,10 @@ import java.util.stream.Collectors;
 public class CompanyService {
 
     private CompanyRepository companyRepository;
-    private EntityToDtoMapper entityMapper;
-    private DtoToEntityMapper dtoMapper;
+    private EntityMapper entityMapper;
+    private DtoMapper dtoMapper;
 
-    public CompanyService(CompanyRepository companyRepository, EntityToDtoMapper entityMapper, DtoToEntityMapper dtoMapper) {
+    public CompanyService(CompanyRepository companyRepository, EntityMapper entityMapper, DtoMapper dtoMapper) {
         this.companyRepository = companyRepository;
         this.entityMapper = entityMapper;
         this.dtoMapper = dtoMapper;

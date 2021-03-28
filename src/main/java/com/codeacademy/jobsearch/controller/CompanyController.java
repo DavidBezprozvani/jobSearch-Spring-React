@@ -38,6 +38,7 @@ public class CompanyController {
     }
 
     @PutMapping("/update/{id}")
+    @PreAuthorize("hasRole('ADMIN') || hasRole('USER')")
     @ResponseStatus(HttpStatus.ACCEPTED)
     public CompanyDTO updateCompany(@RequestBody @Valid CompanyDTO companyDTO) {
         return companyService.updateCompany(companyDTO);

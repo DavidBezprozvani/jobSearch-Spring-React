@@ -19,8 +19,7 @@ public class Post {
 
     private String title;
 
-    //TODO: ENUMS
-    private String type;
+    private Type type;
 
     private String description;
 
@@ -38,7 +37,6 @@ public class Post {
     @ManyToOne(fetch = FetchType.LAZY)
     private Company company;
 
-//    private String logoUrl;
 
 
 }

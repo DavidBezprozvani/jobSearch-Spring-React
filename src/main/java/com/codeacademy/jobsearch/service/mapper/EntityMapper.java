@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 import java.util.stream.Collectors;
 
 @Component
-public class EntityToDtoMapper {
+public class EntityMapper {
 
     /**
      * Converts from Post entity to Post DTO
@@ -29,6 +29,10 @@ public class EntityToDtoMapper {
         postDTO.setLogoUrl(post.getCompany().getLogoUrl());
         return postDTO;
 
+    }
+
+    public PostDTO convertPostEntityToDTO(Post post) {
+        return convertPostEntityToDTO(post, post.getCompany().getId());
     }
 
     /**
@@ -73,7 +77,5 @@ public class EntityToDtoMapper {
         return applicationDTO;
     }
 
-    public PostDTO convertPostEntityToDTO(Post post) {
-        return convertPostEntityToDTO(post, post.getCompany().getId());
-    }
+
 }

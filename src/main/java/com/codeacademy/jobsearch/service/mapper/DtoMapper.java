@@ -5,27 +5,30 @@ import com.codeacademy.jobsearch.entity.dto.ApplicationDTO;
 import com.codeacademy.jobsearch.entity.dto.CompanyDTO;
 import com.codeacademy.jobsearch.entity.dto.PostDTO;
 import com.codeacademy.jobsearch.entity.dto.UserDTO;
-import org.springframework.beans.BeanUtils;
+import com.codeacademy.jobsearch.repository.CompanyRepository;
 import org.springframework.stereotype.Component;
 
 import java.util.Set;
 
 @Component
-public class DtoToEntityMapper {
+public class DtoMapper {
+
+    private CompanyRepository companyRepository;
 
     /**
      * Converts from Post DTO to Post entity
      */
     public Post convertPostDtoToEntity(PostDTO postDTO) {
         Post post = new Post();
-        post.setId(postDTO.getId());
-        post.setType(postDTO.getType());
+        Company company = companyRepository.getOne(postDTO.getCompanyId());
+        post.setCompany(company);
         post.setDescription(postDTO.getDescription());
         post.setSummary(postDTO.getSummary());
         post.setCreatedAt(postDTO.getCreatedAt());
         post.setLocation(postDTO.getLocation());
         post.setTitle(postDTO.getTitle());
         post.setApplyUrl(postDTO.getApplyUrl());
+        convertType(postDTO, post);
         return post;
 
     }
@@ -65,6 +68,22 @@ public class DtoToEntityMapper {
         application.setTitle(applicationDTO.getTitle());
         application.setBody(applicationDTO.getBody());
         return application;
+    }
+
+
+    public void convertType(PostDTO postDTO, Post post) {
+        if (postDTO.getType().equalsIgnoreCase(Type.PART_TIME.name())) {
+            post.setType(Type.PART_TIME);
+        }
+        else if (postDTO.getType().equalsIgnoreCase(Type.FULL_TIME.name())) {
+            post.setType(Type.FULL_TIME);
+        }
+        else if (postDTO.getType().equalsIgnoreCase(Type.INTERNSHIP.name())) {
+            post.setType(Type.INTERNSHIP);
+        }
+        if (postDTO.getType().equalsIgnoreCase(Type.REMOTE.name())) {
+            post.setType(Type.REMOTE);
+        }
     }
 }
 
