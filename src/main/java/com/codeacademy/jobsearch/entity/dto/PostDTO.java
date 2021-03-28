@@ -39,8 +39,5 @@ public class PostDTO {
 
     private String applyUrl;
 
-    private String logoUrl;
-
     private Long companyId;
-
 }

@@ -8,12 +8,14 @@ import com.codeacademy.jobsearch.entity.dto.UserDTO;
 import com.codeacademy.jobsearch.repository.CompanyRepository;
 import org.springframework.stereotype.Component;
 
-import java.util.Set;
-
 @Component
 public class DtoMapper {
 
     private CompanyRepository companyRepository;
+
+    public DtoMapper(CompanyRepository companyRepository) {
+        this.companyRepository = companyRepository;
+    }
 
     /**
      * Converts from Post DTO to Post entity

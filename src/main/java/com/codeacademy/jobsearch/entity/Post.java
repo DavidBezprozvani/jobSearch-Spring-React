@@ -10,6 +10,8 @@ import java.time.Instant;
 
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 public class Post {
 
@@ -19,6 +21,7 @@ public class Post {
 
     private String title;
 
+    @Enumerated(EnumType.STRING)
     private Type type;
 
     private String description;

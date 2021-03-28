@@ -39,7 +39,10 @@ public class PostService {
 
 
     public PostDTO getPostById(Long id) {
-        Post post = getPostEntityById(id);
+        if (id == null) {
+            throw new EntityNotFoundException(id);
+        }
+        Post post = postRepository.getOne(id);
         return entityMapper.convertPostEntityToDTO(post);
     }
 
@@ -47,7 +50,7 @@ public class PostService {
         Company company = companyRepository.getOne(postDTO.getCompanyId());
         Post post = dtoMapper.convertPostDtoToEntity(postDTO);
         post.setCompany(company);
-        postDTO.setLogoUrl(post.getCompany().getLogoUrl());
+//        postDTO.setLogoUrl(post.getCompany().getLogoUrl());
         Post savedPost = postRepository.save(post);
         return entityMapper.convertPostEntityToDTO(savedPost, postDTO.getCompanyId());
     }
@@ -57,18 +60,8 @@ public class PostService {
         if (id == null) {
             throw new EntityNotFoundException(id);
         }
-        Post post = getPostEntityById(id);
-//        post.setId(postDTO.getId());
-        post.setTitle(postDTO.getTitle());
-        post.setCompany(companyRepository.getOne(postDTO.getCompanyId()));
-        post.setDescription(postDTO.getDescription());
-        post.setSummary(postDTO.getSummary());
-        post.setApplyUrl(postDTO.getApplyUrl());
-        post.setCreatedAt(postDTO.getCreatedAt());
-        post.setLocation(postDTO.getLocation());
-        post.setType(postDTO.getType());
-//        post.setLogoUrl(companyRepository.getOne(postDTO.getCompanyId()).getLogoUrl());
-
+        Post post = postRepository.getOne(id);
+//        post.setCompany(companyRepository.getOne(postDTO.getCompanyId()));
         Post updatedPost = postRepository.save(post);
         return entityMapper.convertPostEntityToDTO(updatedPost);
     }
@@ -84,8 +77,4 @@ public class PostService {
     // TODO: getByType / getByTitle / getByLocation / getByCompanyId
 
 
-    Post getPostEntityById(Long id) {
-        return postRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException(id));
-    }
 }

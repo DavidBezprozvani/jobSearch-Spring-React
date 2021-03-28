@@ -19,14 +19,13 @@ public class EntityMapper {
         PostDTO postDTO = new PostDTO();
         postDTO.setId(post.getId());
         postDTO.setCompanyId(companyId);
-        postDTO.setType(post.getType());
+        postDTO.setType(post.getType().name());
         postDTO.setDescription(post.getDescription());
         postDTO.setSummary(post.getSummary());
         postDTO.setCreatedAt(post.getCreatedAt());
         postDTO.setLocation(post.getLocation());
         postDTO.setTitle(post.getTitle());
         postDTO.setApplyUrl(post.getApplyUrl());
-        postDTO.setLogoUrl(post.getCompany().getLogoUrl());
         return postDTO;
 
     }

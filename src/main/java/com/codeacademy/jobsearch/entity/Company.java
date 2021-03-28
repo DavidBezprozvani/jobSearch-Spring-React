@@ -30,6 +30,7 @@ public class Company {
     private String companyUrl;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "company")
-    private List<Post> posts = new ArrayList<>();
+//    private List<Post> posts = new ArrayList<>();
+    private List<Post> posts;
 
 }
