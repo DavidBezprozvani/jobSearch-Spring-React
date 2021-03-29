@@ -2,7 +2,7 @@ package com.codeacademy.jobsearch.controller;
 
 import com.codeacademy.jobsearch.entity.User;
 import com.codeacademy.jobsearch.entity.dto.UserDTO;
-import com.codeacademy.jobsearch.service.UserService;
+import com.codeacademy.jobsearch.service.impl.UserServiceImpl;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class LoginController {
 
-    private UserService userService;
+    private UserServiceImpl userServiceImpl;
 
-    public LoginController(UserService userService) {
-        this.userService = userService;
+    public LoginController(UserServiceImpl userServiceImpl) {
+        this.userServiceImpl = userServiceImpl;
     }
 
     @PostMapping("/login")

@@ -2,8 +2,7 @@ package com.codeacademy.jobsearch.controller;
 
 import com.codeacademy.jobsearch.entity.Company;
 import com.codeacademy.jobsearch.entity.dto.CompanyDTO;
-import com.codeacademy.jobsearch.entity.dto.PostDTO;
-import com.codeacademy.jobsearch.service.CompanyService;
+import com.codeacademy.jobsearch.service.impl.CompanyServiceImpl;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -15,35 +14,34 @@ import java.util.List;
 @RequestMapping("/companies")
 public class CompanyController {
 
-    private CompanyService companyService;
+    private CompanyServiceImpl companyServiceImpl;
 
-    public CompanyController(CompanyService companyService) {
-        this.companyService = companyService;
+    public CompanyController(CompanyServiceImpl companyServiceImpl) {
+        this.companyServiceImpl = companyServiceImpl;
     }
 
-    @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    public Company registerCompany(@Valid @RequestBody Company company) {
-        return companyService.addCompany(company);
-    }
 
     @GetMapping
     public List<CompanyDTO> getAllCompanies() {
-        return companyService.getAllCompanies();
+        return companyServiceImpl.getAllCompanies();
     }
 
     @GetMapping("/{id}")
     public CompanyDTO getCompanyById(@PathVariable Long id) {
-        return companyService.getCompanyById(id);
+        return companyServiceImpl.getCompanyById(id);
     }
+
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public CompanyDTO registerCompany(@Valid @RequestBody CompanyDTO companyDTO) {
+        return companyServiceImpl.addCompany(companyDTO);
+    }
+
 
     @PutMapping("/update/{id}")
     @PreAuthorize("hasRole('ADMIN') || hasRole('USER')")
     @ResponseStatus(HttpStatus.ACCEPTED)
     public CompanyDTO updateCompany(@RequestBody @Valid CompanyDTO companyDTO) {
-        return companyService.updateCompany(companyDTO);
+        return companyServiceImpl.updateCompany(companyDTO);
     }
-
-    // TODO: get by company name, update company
-
 }

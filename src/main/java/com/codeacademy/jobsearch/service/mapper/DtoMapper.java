@@ -65,7 +65,7 @@ public class DtoMapper {
     /**
      * Converts from Application DTO to Application entity
      */
-    public Application convertCompanyDtoToEntity(ApplicationDTO applicationDTO) {
+    public Application convertApplicationDtoToEntity(ApplicationDTO applicationDTO) {
         Application application = new Application();
         application.setTitle(applicationDTO.getTitle());
         application.setBody(applicationDTO.getBody());

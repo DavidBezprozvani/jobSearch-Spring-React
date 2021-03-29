@@ -3,6 +3,7 @@ import com.codeacademy.jobsearch.security.JWTAuthenticationFilter;
 import com.codeacademy.jobsearch.security.JWTAuthorizationFilter;
 import com.codeacademy.jobsearch.security.JwtProvider;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpStatus;
@@ -25,6 +26,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private JwtProvider jwtProvider;
 
+    @Qualifier("userServiceImpl")
     @Autowired
     private UserDetailsService userService;
 
@@ -38,7 +40,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
-                .antMatchers("/login/**", "/registration", "/", "/jobs", "/jobs/{id}", "/companies").permitAll()
+                .antMatchers("/login/**", "/registration", "/", "/jobs", "/jobs/{id}",
+                        "**/jobs/company/**", "/companies").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .exceptionHandling()
