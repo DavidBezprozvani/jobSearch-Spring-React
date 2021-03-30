@@ -74,16 +74,17 @@ public class DtoMapper {
 
 
     public void convertType(PostDTO postDTO, Post post) {
-        if (postDTO.getType().equalsIgnoreCase(Type.PART_TIME.name())) {
+        if (postDTO.getType().equalsIgnoreCase(Type.PART_TIME.name())
+                || postDTO.getType().equalsIgnoreCase("part time")
+                || postDTO.getType().equalsIgnoreCase("parttime")) {
             post.setType(Type.PART_TIME);
-        }
-        else if (postDTO.getType().equalsIgnoreCase(Type.FULL_TIME.name())) {
+        } else if (postDTO.getType().equalsIgnoreCase(Type.FULL_TIME.name())
+                || postDTO.getType().equalsIgnoreCase("full time")
+                || postDTO.getType().equalsIgnoreCase("fulltime")) {
             post.setType(Type.FULL_TIME);
-        }
-        else if (postDTO.getType().equalsIgnoreCase(Type.INTERNSHIP.name())) {
+        } else if (postDTO.getType().equalsIgnoreCase(Type.INTERNSHIP.name())) {
             post.setType(Type.INTERNSHIP);
-        }
-        if (postDTO.getType().equalsIgnoreCase(Type.REMOTE.name())) {
+        } else if (postDTO.getType().equalsIgnoreCase(Type.REMOTE.name())) {
             post.setType(Type.REMOTE);
         }
     }
