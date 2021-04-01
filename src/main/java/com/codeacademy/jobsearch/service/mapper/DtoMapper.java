@@ -12,9 +12,11 @@ import org.springframework.stereotype.Component;
 public class DtoMapper {
 
     private CompanyRepository companyRepository;
+    private TypeConverter typeConverter;
 
-    public DtoMapper(CompanyRepository companyRepository) {
+    public DtoMapper(CompanyRepository companyRepository, TypeConverter typeConverter) {
         this.companyRepository = companyRepository;
+        this.typeConverter = typeConverter;
     }
 
     /**
@@ -30,7 +32,7 @@ public class DtoMapper {
         post.setLocation(postDTO.getLocation());
         post.setTitle(postDTO.getTitle());
         post.setApplyUrl(postDTO.getApplyUrl());
-        convertType(postDTO, post);
+        typeConverter.convertType(postDTO, post);
         return post;
 
     }
@@ -73,20 +75,20 @@ public class DtoMapper {
     }
 
 
-    public void convertType(PostDTO postDTO, Post post) {
-        if (postDTO.getType().equalsIgnoreCase(Type.PART_TIME.name())
-                || postDTO.getType().equalsIgnoreCase("part time")
-                || postDTO.getType().equalsIgnoreCase("parttime")) {
-            post.setType(Type.PART_TIME);
-        } else if (postDTO.getType().equalsIgnoreCase(Type.FULL_TIME.name())
-                || postDTO.getType().equalsIgnoreCase("full time")
-                || postDTO.getType().equalsIgnoreCase("fulltime")) {
-            post.setType(Type.FULL_TIME);
-        } else if (postDTO.getType().equalsIgnoreCase(Type.INTERNSHIP.name())) {
-            post.setType(Type.INTERNSHIP);
-        } else if (postDTO.getType().equalsIgnoreCase(Type.REMOTE.name())) {
-            post.setType(Type.REMOTE);
-        }
-    }
+//    public void convertType(PostDTO postDTO, Post post) {
+//        if (postDTO.getType().equalsIgnoreCase(Type.PART_TIME.name())
+//                || postDTO.getType().equalsIgnoreCase("part time")
+//                || postDTO.getType().equalsIgnoreCase("parttime")) {
+//            post.setType(Type.PART_TIME);
+//        } else if (postDTO.getType().equalsIgnoreCase(Type.FULL_TIME.name())
+//                || postDTO.getType().equalsIgnoreCase("full time")
+//                || postDTO.getType().equalsIgnoreCase("fulltime")) {
+//            post.setType(Type.FULL_TIME);
+//        } else if (postDTO.getType().equalsIgnoreCase(Type.INTERNSHIP.name())) {
+//            post.setType(Type.INTERNSHIP);
+//        } else if (postDTO.getType().equalsIgnoreCase(Type.REMOTE.name())) {
+//            post.setType(Type.REMOTE);
+//        }
+//    }
 }
 

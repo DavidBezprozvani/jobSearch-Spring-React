@@ -9,10 +9,13 @@ import com.codeacademy.jobsearch.service.PostService;
 import com.codeacademy.jobsearch.service.mapper.DtoMapper;
 import com.codeacademy.jobsearch.service.mapper.EntityMapper;
 import com.codeacademy.jobsearch.repository.PostRepository;
+import com.codeacademy.jobsearch.service.mapper.TypeConverter;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
+
+import static com.codeacademy.jobsearch.entity.Type.FULL_TIME;
 
 @Service
 public class PostServiceImpl implements PostService {
@@ -21,13 +24,15 @@ public class PostServiceImpl implements PostService {
     private EntityMapper entityMapper;
     private DtoMapper dtoMapper;
     private CompanyRepository companyRepository;
+    private TypeConverter typeConverter;
 
 
-    public PostServiceImpl(PostRepository postRepository, EntityMapper entityMapper, DtoMapper dtoMapper, CompanyRepository companyRepository) {
+    public PostServiceImpl(PostRepository postRepository, EntityMapper entityMapper, DtoMapper dtoMapper, CompanyRepository companyRepository, TypeConverter typeConverter) {
         this.postRepository = postRepository;
         this.entityMapper = entityMapper;
         this.dtoMapper = dtoMapper;
         this.companyRepository = companyRepository;
+        this.typeConverter = typeConverter;
     }
 
     @Override
@@ -72,7 +77,7 @@ public class PostServiceImpl implements PostService {
         post.setLocation(postDTO.getLocation());
         post.setTitle(postDTO.getTitle());
         post.setApplyUrl(postDTO.getApplyUrl());
-        dtoMapper.convertType(postDTO, post);
+        typeConverter.convertType(postDTO, post);
         Post updatedPost = postRepository.save(post);
         return entityMapper.convertPostEntityToDTO(updatedPost);
     }
@@ -95,7 +100,18 @@ public class PostServiceImpl implements PostService {
                 .collect(Collectors.toList());
     }
 
-
+    //TODO: fix me
+//    public List<PostDTO> getAllPostsByType(String type) {
+//
+//        if (postRepository.findByType(type) == null) {
+//            throw new javax.persistence.EntityNotFoundException();
+//        }
+//
+//        return postRepository.findByType(type)
+//                .stream()
+//                .map(post -> entityMapper.convertPostEntityToDTO(post))
+//                .collect(Collectors.toList());
+//    }
 
     // TODO: getByType / getByTitle / getByLocation /
 

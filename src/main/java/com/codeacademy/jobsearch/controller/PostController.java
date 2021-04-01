@@ -32,6 +32,12 @@ public class PostController {
         return postServiceImpl.getAllPostsByCompany(companyId);
     }
 
+    //TODO: fix me
+//    @GetMapping("/{type}")
+//    public List<PostDTO> getAllPostsByType(@PathVariable String type) {
+//        return postServiceImpl.getAllPostsByType(type);
+//    }
+
     @GetMapping("/{id}")
     public PostDTO getPostById(@PathVariable Long id) {
         return postServiceImpl.getPostById(id);
